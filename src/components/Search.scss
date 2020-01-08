@@ -26,4 +26,9 @@
 
 .SongList {
     text-align:center;
+
+    .SortableHead {
+        cursor: pointer;
+        background-color: coral;
+    }
 }
