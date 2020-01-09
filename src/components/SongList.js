@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
+import SongInfo from "./SongInfo";
 
 class SongList extends Component {
 
     state = {
         sort: '',
-        dir: ''
+        dir: '',
+        showSongInfo: false,
+        songSelected: ''
     };
 
     formatReleaseDate = dategiven => {
@@ -77,63 +80,82 @@ class SongList extends Component {
         return copy;
     };
 
+    viewSongInfo = (event, song, sortedSongs) => {
+        this.setState({
+            showSongInfo: true,
+            songSelected: song
+        })
+    };
+
     render() {
         const sortedSongs = this.sortSongs(this.props.songs.results, this.state.sort, this.state.dir);
         const hasSongs = this.props.songs.resultCount > 0;
 
+        window.console.log(sortedSongs);
         return (
-            <div className="SongList">
-            {hasSongs ? (
-            <table>
-                <thead>
-                    <tr>
-                        <th>Artist</th>
-                        <th>Title</th>
-                        <th>Album</th>
-                        <th>Release date</th>
-                        <th>Thumbnail</th>
-                        <th className="SortableHead" onClick={event => this.handleSortingList(event, 'trackTimeMillis')}>Song length</th>
-                        <th className="SortableHead" onClick={event => this.handleSortingList(event, 'primaryGenreName')}>Genre</th>
-                        <th className="SortableHead" onClick={event => this.handleSortingList(event, 'trackPrice')}>Price</th>
-                    </tr>
-                </thead>
-                <tbody>
-                {sortedSongs.map((song) => {
-                    return (
-                        <tr className="SongRow">
-                            <td>
-                                {song.artistName}
-                            </td>
-                            <td>
-                                {song.trackName}
-                            </td>
-                            <td>
-                                {song.collectionName}
-                            </td>
-                            <td>
-                                {this.formatReleaseDate(song.releaseDate)}
-                            </td>
-                            <td>
-                                <img src={song.artworkUrl30} alt="Album"/>
-                            </td>
-                            <td>
-                                {this.formatSongLength(song.trackTimeMillis)}
-                            </td>
-                            <td>
-                                {song.primaryGenreName}
-                            </td>
-                            <td>
-                                {song.trackPrice} {song.currency}
-                            </td>
+            <div>
+            {hasSongs && !this.state.showSongInfo ? (
+                <div className="SongList">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Artist</th>
+                            <th>Title</th>
+                            <th>Album</th>
+                            <th>Release date</th>
+                            <th>Thumbnail</th>
+                            <th className="SortableHead" onClick={event => this.handleSortingList(event, 'trackTimeMillis')}>Song length</th>
+                            <th className="SortableHead" onClick={event => this.handleSortingList(event, 'primaryGenreName')}>Genre</th>
+                            <th className="SortableHead" onClick={event => this.handleSortingList(event, 'trackPrice')}>Price</th>
                         </tr>
-                    );
-                })}
-                </tbody>
-            </table>
-            ) : (
-                <p>No songs founds! :(</p>
+                    </thead>
+                    <tbody>
+                    {sortedSongs.map((song, index) => {
+                        song.id = index;
+                        return (
+                            <tr className="SongRow" id={song.id} onClick={event => this.viewSongInfo(event, song)}>
+                                <td>
+                                    {song.artistName}
+                                </td>
+                                <td>
+                                    {song.trackName}
+                                </td>
+                                <td>
+                                    {song.collectionName}
+                                </td>
+                                <td>
+                                    {this.formatReleaseDate(song.releaseDate)}
+                                </td>
+                                <td>
+                                    <img src={song.artworkUrl30} alt="Album"/>
+                                </td>
+                                <td>
+                                    {this.formatSongLength(song.trackTimeMillis)}
+                                </td>
+                                <td>
+                                    {song.primaryGenreName}
+                                </td>
+                                <td>
+                                    {song.trackPrice} {song.currency}
+                                </td>
+                            </tr>
+                        );
+                    })}
+                    </tbody>
+                </table>
+                </div>
+            ) : ( <div></div> )}
+            {!hasSongs && (
+                <div className="NoSongs">No songs found :(</div>
+            )}
+            {this.state.showSongInfo && (
+                <SongInfo
+                    song={this.state.songSelected}
+                    songs={sortedSongs}
+                />
             )}
             </div>
+
         );
     }
 }

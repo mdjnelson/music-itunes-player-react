@@ -31,4 +31,38 @@
         cursor: pointer;
         background-color: coral;
     }
+
+    tr.SongRow:hover {
+        cursor: pointer;
+        background-color: yellow;
+    }
+}
+
+.SongInfo {
+    padding-top: 10px;
+
+    .AlbumCover img {
+        width: 200px;
+        height: auto;
+    }
+
+    .SongNavigation {
+
+        button {
+            background-color: black;
+        }
+
+        .Previous {
+            float: left;
+        }
+
+        .Next {
+            float: right;
+        }
+    }
+}
+
+.NoSongs {
+    font-size: 18px;
+    padding-top: 10px;
 }
