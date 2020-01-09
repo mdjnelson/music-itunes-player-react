@@ -9,7 +9,6 @@ class Search extends Component {
         songs: []
     };
 
-
     handleOnChange(event) {
         this.setState({
             searchValue: event.target.value
