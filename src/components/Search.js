@@ -34,7 +34,7 @@ class Search extends Component {
 
     render() {
         return (
-            <div className="SearchBox">
+            <div id="search-box">
                 <input
                     name="text"
                     type="text"

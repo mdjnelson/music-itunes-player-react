@@ -25,8 +25,8 @@ class SongInfo extends Component {
     render() {
 
         return (
-            <div className="SongInfo">
-                <div className="AlbumCover">
+            <div id="song-info">
+                <div id="album-cover">
                     <img src={this.state.song.artworkUrl100} alt="Album cover" />
                 </div>
                 <div>
@@ -37,9 +37,9 @@ class SongInfo extends Component {
                 <video controls>
                     <source src={this.state.song.previewUrl} />
                 </video>
-                <div className="SongNavigation">
-                    <button className="Previous" onClick={event => this.handleOnClick(event, this.state.song.id, 'previous')}> ← Previous </button>
-                    <button className="Next" onClick={event => this.handleOnClick(event, this.state.song.id, 'next')}>Next → </button>
+                <div id="song-navigation">
+                    <button id="previous" onClick={event => this.handleOnClick(event, this.state.song.id, 'previous')}> ← Previous </button>
+                    <button id="next" onClick={event => this.handleOnClick(event, this.state.song.id, 'next')}>Next → </button>
                 </div>
             </div>
         )

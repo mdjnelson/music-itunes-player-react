@@ -1,4 +1,4 @@
-.SearchBox {
+#search-box {
     text-align: center;
     width: 80%;
     margin: 0 auto;
@@ -24,45 +24,45 @@
     }
 }
 
-.SongList {
+#song-list {
     text-align:center;
 
-    .SortableHead {
+    .sortable-head {
         cursor: pointer;
         background-color: coral;
     }
 
-    tr.SongRow:hover {
+    tr.song-row:hover {
         cursor: pointer;
         background-color: yellow;
     }
 }
 
-.SongInfo {
+#song-info {
     padding-top: 10px;
 
-    .AlbumCover img {
+    #album-cover img {
         width: 200px;
         height: auto;
     }
 
-    .SongNavigation {
+    #song-navigation {
 
         button {
             background-color: black;
         }
 
-        .Previous {
+        #previous {
             float: left;
         }
 
-        .Next {
+        #next {
             float: right;
         }
     }
 }
 
-.NoSongs {
+#no-songs {
     font-size: 18px;
     padding-top: 10px;
 }

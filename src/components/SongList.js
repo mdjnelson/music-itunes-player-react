@@ -95,7 +95,7 @@ class SongList extends Component {
         return (
             <div>
             {hasSongs && !this.state.showSongInfo ? (
-                <div className="SongList">
+                <div id="song-list">
                 <table>
                     <thead>
                         <tr>
@@ -104,16 +104,16 @@ class SongList extends Component {
                             <th>Album</th>
                             <th>Release date</th>
                             <th>Thumbnail</th>
-                            <th className="SortableHead" onClick={event => this.handleSortingList(event, 'trackTimeMillis')}>Song length</th>
-                            <th className="SortableHead" onClick={event => this.handleSortingList(event, 'primaryGenreName')}>Genre</th>
-                            <th className="SortableHead" onClick={event => this.handleSortingList(event, 'trackPrice')}>Price</th>
+                            <th className="sortable-head" onClick={event => this.handleSortingList(event, 'trackTimeMillis')}>Song length</th>
+                            <th className="sortable-head" onClick={event => this.handleSortingList(event, 'primaryGenreName')}>Genre</th>
+                            <th className="sortable-head" onClick={event => this.handleSortingList(event, 'trackPrice')}>Price</th>
                         </tr>
                     </thead>
                     <tbody>
                     {sortedSongs.map((song, index) => {
                         song.id = index;
                         return (
-                            <tr className="SongRow" id={song.id} onClick={event => this.viewSongInfo(event, song)}>
+                            <tr className="song-row" id={song.id} onClick={event => this.viewSongInfo(event, song)}>
                                 <td>
                                     {song.artistName}
                                 </td>
@@ -146,7 +146,7 @@ class SongList extends Component {
                 </div>
             ) : ( <div></div> )}
             {!hasSongs && (
-                <div className="NoSongs">No songs found :(</div>
+                <div id="no-songs">No songs found :(</div>
             )}
             {this.state.showSongInfo && (
                 <SongInfo
