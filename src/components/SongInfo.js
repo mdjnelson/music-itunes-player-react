@@ -38,9 +38,7 @@ class SongInfo extends Component {
                     <strong>Track name:</strong> {this.state.song.trackName}<br />
                     <strong>Country:</strong> {this.state.song.country}<br />
                 </div>
-                <video controls>
-                    <source src={this.state.song.previewUrl} />
-                </video>
+                <video src={this.state.song.previewUrl} controls />
                 <div id="song-navigation">
                     <button id="previous" onClick={event => this.handleOnClick(event, this.state.song.id, 'previous')}> ← Previous </button>
                     <button id="next" onClick={event => this.handleOnClick(event, this.state.song.id, 'next')}>Next → </button>
