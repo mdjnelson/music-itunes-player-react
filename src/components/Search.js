@@ -1,12 +1,15 @@
 import React, { Component } from 'react'
 import SongList from "./SongList";
+import SongInfo from "./SongInfo";
 import './Search.scss';
 
 class Search extends Component {
 
     state = {
         searchValue: '',
-        songs: []
+        songs: [],
+        songSelected: '',
+        showInfo: false
     };
 
     handleOnChange(event) {
@@ -25,12 +28,20 @@ class Search extends Component {
         })
         .then(data => {
             this.setState({
-                songs: data
+                songs: data,
+                showInfo: false
             });
         });
 
         event.preventDefault();
     }
+
+    viewSongInfo = (event, song) => {
+        this.setState({
+            showInfo: true,
+            songSelected: song
+        })
+    };
 
     render() {
         return (
@@ -43,7 +54,18 @@ class Search extends Component {
                     value={this.state.searchValue}
                 />
                 <button onClick={event => this.handleOnClick(event)}>Search</button>
-                <SongList songs={this.state.songs} />
+                {this.state.songs && !this.state.showInfo &&
+                    <SongList
+                        songs={this.state.songs}
+                        viewSongInfo={this.viewSongInfo.bind(this)}
+                    />
+                }
+                {this.state.showInfo &&
+                    <SongInfo
+                        song={this.state.songSelected}
+                        songs={this.state.songs.results}
+                    />
+                }
             </div>
         )
     }

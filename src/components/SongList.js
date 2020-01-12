@@ -1,13 +1,10 @@
 import React, { Component } from 'react'
-import SongInfo from "./SongInfo";
 
 class SongList extends Component {
 
     state = {
         sort: '',
-        dir: '',
-        showSongInfo: false,
-        songSelected: ''
+        dir: ''
     };
 
     formatReleaseDate = dategiven => {
@@ -80,20 +77,13 @@ class SongList extends Component {
         return copy;
     };
 
-    viewSongInfo = (event, song) => {
-        this.setState({
-            showSongInfo: true,
-            songSelected: song
-        })
-    };
-
     render() {
         const sortedSongs = this.sortSongs(this.props.songs.results, this.state.sort, this.state.dir);
         const hasSongs = this.props.songs.resultCount > 0;
 
         return (
             <div>
-            {hasSongs && !this.state.showSongInfo ? (
+            {hasSongs && !this.state.showInfo ? (
                 <div id="song-list">
                 <table>
                     <thead>
@@ -112,7 +102,7 @@ class SongList extends Component {
                     {sortedSongs.map((song, index) => {
                         song.id = index;
                         return (
-                            <tr className="song-row" id={song.id} onClick={event => this.viewSongInfo(event, song)}>
+                            <tr className="song-row" id={song.id} onClick={event => this.props.viewSongInfo(event, song)}>
                                 <td>
                                     {song.artistName}
                                 </td>
@@ -146,12 +136,6 @@ class SongList extends Component {
             ) : ( <div></div> )}
             {!hasSongs && (
                 <div id="no-songs">No songs found :(</div>
-            )}
-            {this.state.showSongInfo && (
-                <SongInfo
-                    song={this.state.songSelected}
-                    songs={sortedSongs}
-                />
             )}
             </div>
 
