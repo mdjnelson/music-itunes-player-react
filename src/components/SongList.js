@@ -56,9 +56,22 @@ class SongList extends Component {
 
     compareAlpha = (a, b, dir) => {
         if (dir === 'asc') {
-            return a > b;
+            if (a > b) {
+                return -1;
+            }
+            if (b > a) {
+                return 1;
+            }
+            return 0;
+        } else {
+            if (a < b) {
+                return -1;
+            }
+            if (b < a) {
+                return 1;
+            }
+            return 0;
         }
-        return a < b;
     };
 
     sortSongs = (songs, sort, dir) => {
@@ -93,9 +106,9 @@ class SongList extends Component {
                             <th>Album</th>
                             <th>Release date</th>
                             <th>Thumbnail</th>
-                            <th className="sortable-head" onClick={event => this.handleSortingList(event, 'trackTimeMillis')}>Song length</th>
-                            <th className="sortable-head" onClick={event => this.handleSortingList(event, 'primaryGenreName')}>Genre</th>
-                            <th className="sortable-head" onClick={event => this.handleSortingList(event, 'trackPrice')}>Price</th>
+                            <th className="sortable-column" onClick={event => this.handleSortingList(event, 'trackTimeMillis')}>Song length</th>
+                            <th className="sortable-column" onClick={event => this.handleSortingList(event, 'primaryGenreName')}>Genre</th>
+                            <th className="sortable-column" onClick={event => this.handleSortingList(event, 'trackPrice')}>Price</th>
                         </tr>
                     </thead>
                     <tbody>
