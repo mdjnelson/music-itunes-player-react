@@ -11,8 +11,12 @@ class SongInfo extends Component {
         let newid = id;
         if (direction === 'previous' && id > 0) {
             newid = id - 1;
-        } else if (direction === 'next' && id < 50) {
+        } else if (direction === 'next') {
             newid = id + 1;
+        }
+
+        if (!this.props.songs[newid]) {
+            return;
         }
 
         this.setState({
