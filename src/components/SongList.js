@@ -134,7 +134,7 @@ class SongList extends Component {
                 </table>
                 </div>
             ) : ( <div></div> )}
-            {!hasSongs && (
+            {!hasSongs && this.props.searchValue && (
                 <div id="no-songs">No songs found :(</div>
             )}
             </div>

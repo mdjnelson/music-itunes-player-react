@@ -7,7 +7,7 @@ class Search extends Component {
 
     state = {
         searchValue: '',
-        songs: [],
+        songs: '',
         songSelected: '',
         showInfo: false
     };
@@ -58,6 +58,7 @@ class Search extends Component {
                     <SongList
                         songs={this.state.songs}
                         viewSongInfo={this.viewSongInfo.bind(this)}
+                        searchValue={this.state.searchValue}
                     />
                 }
                 {this.state.showInfo &&
