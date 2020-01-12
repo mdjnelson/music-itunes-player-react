@@ -55,6 +55,8 @@ class SongList extends Component {
     };
 
     compareAlpha = (a, b, dir) => {
+        window.console.log(a);
+        window.console.log(b);
         if (dir === 'asc') {
             return a > b;
         }
@@ -83,7 +85,7 @@ class SongList extends Component {
 
         return (
             <div>
-            {hasSongs && !this.state.showInfo ? (
+            {hasSongs && !this.state.showInfo && (
                 <div id="song-list">
                 <table>
                     <thead>
@@ -133,7 +135,7 @@ class SongList extends Component {
                     </tbody>
                 </table>
                 </div>
-            ) : ( <div></div> )}
+            )}
             {!hasSongs && this.props.searchValue && (
                 <div id="no-songs">No songs found :(</div>
             )}
