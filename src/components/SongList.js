@@ -55,8 +55,6 @@ class SongList extends Component {
     };
 
     compareAlpha = (a, b, dir) => {
-        window.console.log(a);
-        window.console.log(b);
         if (dir === 'asc') {
             return a > b;
         }
