@@ -80,7 +80,7 @@ class SongList extends Component {
         return copy;
     };
 
-    viewSongInfo = (event, song, sortedSongs) => {
+    viewSongInfo = (event, song) => {
         this.setState({
             showSongInfo: true,
             songSelected: song
