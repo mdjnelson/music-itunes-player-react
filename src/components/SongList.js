@@ -91,7 +91,6 @@ class SongList extends Component {
         const sortedSongs = this.sortSongs(this.props.songs.results, this.state.sort, this.state.dir);
         const hasSongs = this.props.songs.resultCount > 0;
 
-        window.console.log(sortedSongs);
         return (
             <div>
             {hasSongs && !this.state.showSongInfo ? (
